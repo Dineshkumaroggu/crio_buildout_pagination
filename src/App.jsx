@@ -27,10 +27,10 @@ const EmployeeTable = () => {
   const totalPages = Math.ceil(employees.length / recordsPerPage);
 
   const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
+    if (currentPage === 1) return; 
+    setCurrentPage((prevPage) => prevPage - 1);
   };
+  
   
 
   const handleNext = () => {
@@ -77,7 +77,6 @@ const EmployeeTable = () => {
       <div style={{ marginTop: "20px" }}>
         <button
           onClick={handlePrevious}
-          disabled={employees.length === 0 || currentPage === 1}
           style={{
             padding: "8px 15px",
             margin: "5px",

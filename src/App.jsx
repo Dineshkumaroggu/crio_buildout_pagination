@@ -27,12 +27,18 @@ const EmployeeTable = () => {
   const totalPages = Math.ceil(employees.length / recordsPerPage);
 
   const handlePrevious = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
   };
+  
 
   const handleNext = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
   };
+  
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
@@ -68,11 +74,10 @@ const EmployeeTable = () => {
         </tbody>
       </table>
 
-      {/* Pagination Controls */}
       <div style={{ marginTop: "20px" }}>
         <button
           onClick={handlePrevious}
-          disabled={currentPage === 1}
+          disabled={employees.length === 0 || currentPage === 1}
           style={{
             padding: "8px 15px",
             margin: "5px",
